@@ -86,7 +86,7 @@ class base {
   package { 'tightvnc':
     provider => zypper,
     ensure => installed,
-    name   => tightvnc,
+    name   => $tightvnc,
   }
   
 
