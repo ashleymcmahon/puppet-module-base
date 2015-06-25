@@ -16,7 +16,7 @@ class base {
   #$puppet_env = $::puppetenv
   #require sysusers
   #include yumrepos
-  #include ntp
+  include base::ntp
   # include mcollective
   #class {'mcollective': puppet_env => $puppet_env, }
   # include puppet
