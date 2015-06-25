@@ -12,15 +12,11 @@
 #
 # No variables needed
 #
-# === Authors
-#
-# Romain Fihue  <romain.fihue@amadeus.com>
-#
 class base {
   #$puppet_env = $::puppetenv
   #require sysusers
   #include yumrepos
-  include ntp
+  #include ntp
   # include mcollective
   #class {'mcollective': puppet_env => $puppet_env, }
   # include puppet
@@ -48,13 +44,13 @@ class base {
   # update hostsfile from DZ depot
   #include base::hostsfile
 
-  unless $::operatingsystem == 'CentOS' {
-    include base::s_check
-  }
+  #unless $::operatingsystem == 'CentOS' {
+  #  include base::s_check
+  #}
 
-  if str2bool($::is_virtual) {
-    include vmtools
-  }
+  #if str2bool($::is_virtual) {
+  #  include vmtools
+  #}
 
   #include snmp
 
@@ -63,7 +59,7 @@ class base {
   }
 
   #include logrotate
-  include bash
+  #include bash
 
   #grub::kernel_param { 'crash_kernel':
   #  param => 'crashkernel',
