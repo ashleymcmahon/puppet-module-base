@@ -17,36 +17,36 @@
 # Romain Fihue  <romain.fihue@amadeus.com>
 #
 class base {
-  $puppet_env = $::puppetenv
-  require sysusers
-  include yumrepos
+  #$puppet_env = $::puppetenv
+  #require sysusers
+  #include yumrepos
   include ntp
   # include mcollective
-  class {'mcollective': puppet_env => $puppet_env, }
+  #class {'mcollective': puppet_env => $puppet_env, }
   # include puppet
-  class {'puppet': puppet_env => $puppet_env, }
-  include base::root_core
+  #class {'puppet': puppet_env => $puppet_env, }
+  #include base::root_core
   # include base::partition
-  include base::hierafacts
-  include centrify
-  include dracut
-  include sightline # Default to installed
-  include openssh
-  include sshsetup
-  include postfix
-  include pythonmodules
+  #include base::hierafacts
+  #include centrify
+  #include dracut
+  #include sightline # Default to installed
+  #include openssh
+  #include sshsetup
+  #include postfix
+  #include pythonmodules
   # Testing jenkins
-  include rsyslog
-  include fusionio
-  include base::filepermissions
-  include gemrc
+  #include rsyslog
+  #include fusionio
+  #include base::filepermissions
+  #include gemrc
 
   # class {'sightline':
   #       ensure => 'absent'  # Will Uninstall it
   #       }
   
   # update hostsfile from DZ depot
-  include base::hostsfile
+  #include base::hostsfile
 
   unless $::operatingsystem == 'CentOS' {
     include base::s_check
@@ -56,19 +56,19 @@ class base {
     include vmtools
   }
 
-  include snmp
+  #include snmp
 
   if $::manufacturer == 'HP' and $::osfamily == 'RedHat' {
     include spp
   }
 
-  include logrotate
+  #include logrotate
   include bash
 
-  grub::kernel_param { 'crash_kernel':
-    param => 'crashkernel',
-    value => '512M@0M'
-  }
+  #grub::kernel_param { 'crash_kernel':
+  #  param => 'crashkernel',
+  #  value => '512M@0M'
+  #}
 
   file { '/etc/facter/facts.d/environment.txt':
     ensure  => present,
@@ -77,14 +77,14 @@ class base {
     noop    => false,
   }
 
-  file { '/etc/facter/facts.d/puppetenv.txt':
+  file { '/etc/facter/facts.d/role.txt':
     ensure  => present,
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template("${module_name}/puppetenv.erb"),
+    #content => template("${module_name}/puppetenv.erb"),
     noop    => false,
   }
 
-  motd::register { "Base": }
+  #motd::register { "Base": }
 }
