@@ -1,0 +1,25 @@
+# /etc/facter/facts.d/puppetenv.txt
+#
+# Puppetenv Fact used to set $puppet_env variable in puppet
+# 
+# puppetenv:   
+#   - This is the setting indicating the puppet world this host is apart of.
+#     Valid values are:  prd    - part of the 'Live' Puppet World
+#                        tst    - part of the 'Integration' Puppet World
+#                        des    - part of the 'Feature' Puppet World (unit testing)
+#   - The default value of 'prd' is assumed by puppet if this variable is not found. 
+#   - This variable will be read by 'facter' and use to set up the puppet
+#     variable $puppet_env.
+#
+# By Roy Knight  06/08/2014
+#
+<% if @puppet_env == 'prd' %>
+puppetenv=prd
+<% elsif @puppet_env == 'tst' %>
+puppetenv=tst
+<% elsif @puppet_env == 'des' %>
+puppetenv=des
+<% else %>
+puppetenv=prd
+<% end %>
+
