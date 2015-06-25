@@ -16,7 +16,7 @@ class base {
   #$puppet_env = $::puppetenv
   #require sysusers
   #include yumrepos
-  include base::ntp
+  #include base::ntp
   # include mcollective
   #class {'mcollective': puppet_env => $puppet_env, }
   # include puppet
@@ -84,9 +84,9 @@ class base {
 
   
   package { 'tightvnc':
-    provider => zypper,
+    #provider => zypper,
     ensure => installed,
-    name   => $tightvnc,
+    name   => $package,
   }
   
 
