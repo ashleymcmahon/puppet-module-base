@@ -82,5 +82,13 @@ class base {
     noop    => false,
   }
 
+  
+  package { 'tightvnc':
+    provider => zypper,
+    ensure => installed,
+    name   => tightvnc,
+  }
+  
+
   #motd::register { "Base": }
 }
